@@ -39,6 +39,7 @@ migrate_working_dir/
 /test/
 .metadata
 analysis_options.yaml
+devtools_options.yaml
 pubspec.lock
 
 
