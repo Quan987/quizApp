@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/models/quiz_data.dart';
-import 'package:quiz_app/modules/main_quiz_screen.dart';
-import 'package:quiz_app/modules/welcome_screen.dart';
+import 'package:quiz_app/data/routes_data.dart';
+import 'package:quiz_app/pages/main_quiz_screen.dart';
+import 'package:quiz_app/pages/welcome_screen.dart';
 
 final _router = GoRouter(
   routes: [
     GoRoute(
       name: 'Welcome Screen',
-      path: welcomeScreen,
+      path: MyRoutes.welcomeScreen,
       builder: (context, state) => const WelcomeScreen(),
     ),
     GoRoute(
       name: 'Main Screen',
-      path: mainQuizScreen,
+      path: MyRoutes.mainQuizScreen,
       builder: (context, state) => const MainQuizScreen(),
     ),
   ],
