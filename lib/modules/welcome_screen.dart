@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/models/quiz_data.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -14,7 +15,23 @@ class WelcomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          children: [Text('Testing')],
+          children: [
+            const Text('Welcome Screen'),
+            const Image(
+              image: AssetImage(
+                'assets/images/logo.png',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => context.go(mainQuizScreen),
+              style: ElevatedButton.styleFrom(
+                elevation: 5,
+              ),
+              child: const Text(
+                'Start App',
+              ),
+            ),
+          ],
         ),
       ),
     );
