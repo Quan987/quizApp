@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/data/routes_data.dart';
 
 class MainQuizScreen extends StatelessWidget {
   const MainQuizScreen({super.key});
@@ -7,16 +8,16 @@ class MainQuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quiz App'),
-        centerTitle: true,
-        backgroundColor: Colors.lightBlue,
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            const Text('Main Screen'),
+            const Text(
+              'Main Screen',
+              style: TextStyle(
+                fontSize: 30,
+              ),
+            ),
             ElevatedButton(
               onPressed: () {},
               child: const Text(
@@ -24,7 +25,9 @@ class MainQuizScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => {
+                context.go(MyRoutes.createFlashCard),
+              },
               child: const Text(
                 'Create Flashcard',
               ),
