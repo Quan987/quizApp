@@ -5,5 +5,5 @@ class MyRoutes {
   static const String mainQuizScreen = '/main_screen';
   static const String createFlashCard = '/create_flashcard_screen';
   static const String addQuizQuestion = '';
-  static const String accessFlashCard = 'access_flashcard_screen';
+  static const String accessFlashCard = '/access_flashcard_screen';
 }

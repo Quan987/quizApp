@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/data/routes_data.dart';
+import 'package:quiz_app/views/screens_manager/access_flashcard_screen.dart';
 import 'package:quiz_app/views/screens_manager/create_flashcard_screen.dart';
 import 'package:quiz_app/views/screens_manager/main_screen.dart';
 import 'package:quiz_app/views/screens_manager/welcome_screen.dart';
@@ -48,6 +49,11 @@ class RouterModel {
             name: 'Create Flash Card',
             path: MyRoutes.createFlashCard,
             builder: (context, state) => const CreateFlashCard(),
+          ),
+          GoRoute(
+            name: 'Access Flash Card',
+            path: MyRoutes.accessFlashCard,
+            builder: (context, state) => const AccessFlashCard(),
           ),
         ],
       ),

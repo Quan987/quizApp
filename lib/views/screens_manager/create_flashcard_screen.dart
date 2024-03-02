@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/data/routes_data.dart';
+import 'package:quiz_app/views/widgets/custom_loading.dart';
 
 class CreateFlashCard extends StatefulWidget {
   const CreateFlashCard({super.key});
@@ -27,9 +27,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
   @override
   Widget build(BuildContext context) {
     return _isLoading
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
+        ? const LoadingScreen()
         : Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -41,7 +39,6 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
               ),
               Container(
                 margin: const EdgeInsets.all(12),
-                padding: const EdgeInsets.all(2),
                 child: const TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),

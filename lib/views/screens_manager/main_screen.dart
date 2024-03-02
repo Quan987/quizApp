@@ -19,15 +19,13 @@ class MainQuizScreen extends StatelessWidget {
               ),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => context.go(MyRoutes.accessFlashCard),
               child: const Text(
                 'Access Flashcard',
               ),
             ),
             ElevatedButton(
-              onPressed: () => {
-                context.go(MyRoutes.createFlashCard),
-              },
+              onPressed: () => context.go(MyRoutes.createFlashCard),
               child: const Text(
                 'Create Flashcard',
               ),
