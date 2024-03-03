@@ -58,7 +58,7 @@ class QuizDataList with ChangeNotifier {
     ),
   };
 
-  void _addFlashCard(String cardName, FlashCard flashCard) {
+  void addFlashCard(String cardName, FlashCard flashCard) {
     quizList[cardName] = flashCard;
     notifyListeners();
   }
