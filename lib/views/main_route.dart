@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/models/route_model.dart';
+import 'package:quiz_app/models/quiz_route.dart';
 
 class MainRoute extends StatelessWidget {
   const MainRoute({super.key});

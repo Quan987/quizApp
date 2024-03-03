@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/data/routes_data.dart';
-import 'package:quiz_app/views/widgets/custom_loading.dart';
+import 'package:quiz_app/widgets/custom_loading.dart';
 
 class AccessFlashCard extends StatefulWidget {
   const AccessFlashCard({super.key});
@@ -47,7 +47,8 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
                     child: const Text('Return to Main'),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => context.go(
+                        '${MyRoutes.accessFlashCard}/${MyRoutes.startQuiz}'),
                     child: const Text('Access Quiz'),
                   ),
                 ],

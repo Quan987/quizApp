@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/data/routes_data.dart';
-import 'package:quiz_app/views/widgets/custom_loading.dart';
+import 'package:quiz_app/widgets/custom_loading.dart';
 
 class CreateFlashCard extends StatefulWidget {
   const CreateFlashCard({super.key});
@@ -56,7 +56,8 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                     child: const Text('Return to Main'),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => context.go(
+                        '${MyRoutes.createFlashCard}/${MyRoutes.addQuizQuestion}'),
                     child: const Text('Create New'),
                   ),
                 ],
