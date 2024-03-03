@@ -6,7 +6,8 @@ import 'package:quiz_app/views/screens_manager/create_flashcard_screen.dart';
 import 'package:quiz_app/views/screens_manager/main_screen.dart';
 import 'package:quiz_app/views/screens_manager/welcome_screen.dart';
 import 'package:quiz_app/views/screens_operation/add_question_screen.dart';
-import 'package:quiz_app/views/screens_operation/start_quiz.dart';
+import 'package:quiz_app/views/screens_operation/score_sceen.dart';
+import 'package:quiz_app/views/screens_operation/start_quiz_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
@@ -68,6 +69,11 @@ class RouterModel {
                 name: 'Quiz Screen',
                 path: MyRoutes.startQuiz,
                 builder: (context, state) => const QuizScreen(),
+              ),
+              GoRoute(
+                name: 'Score Screen',
+                path: MyRoutes.scoreScreen,
+                builder: (context, state) => const ScoreScreen(),
               ),
             ],
           ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:quiz_app/data/routes_data.dart';
 import 'package:quiz_app/widgets/custom_loading.dart';
 
 class QuizScreen extends StatefulWidget {
@@ -26,9 +28,14 @@ class _QuizScreenState extends State<QuizScreen> {
   Widget build(BuildContext context) {
     return _isLoading
         ? const LoadingScreen()
-        : const Column(
+        : Column(
             children: [
               Text('Quiz Screen'),
+              ElevatedButton(
+                onPressed: () => context
+                    .go('${MyRoutes.accessFlashCard}/${MyRoutes.scoreScreen}'),
+                child: const Text('Go to Score Screen'),
+              ),
             ],
           );
   }

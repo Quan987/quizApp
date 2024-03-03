@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quiz_app/widgets/custom_loading.dart';
 
-class AddQuizQuestion extends StatefulWidget {
-  const AddQuizQuestion({super.key});
+class ScoreScreen extends StatefulWidget {
+  const ScoreScreen({super.key});
 
   @override
-  State<AddQuizQuestion> createState() => _AddQuizQuestionState();
+  State<ScoreScreen> createState() => _ScoreScreenState();
 }
 
-class _AddQuizQuestionState extends State<AddQuizQuestion> {
+class _ScoreScreenState extends State<ScoreScreen> {
   late bool _isLoading;
 
   @override
@@ -28,15 +28,17 @@ class _AddQuizQuestionState extends State<AddQuizQuestion> {
     return _isLoading
         ? const LoadingScreen()
         : Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text('Add Question Screen'),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Add Question'),
-              ),
-              ElevatedButton(
-                onPressed: () => context.pop(),
-                child: const Text('Finish'),
+              Text('Score'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => context.pop(),
+                    child: Text('Access Another Quiz'),
+                  ),
+                ],
               ),
             ],
           );
