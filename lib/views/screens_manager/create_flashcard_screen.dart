@@ -63,25 +63,25 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
         '${MyRoutes.createFlashCard}/${MyRoutes.addQuizQuestion}',
       );
 
-      print(_textController.text);
-      print(questionList![0].question);
-      print(questionList[0].answers);
-      print(questionList);
+      // print(_textController.text);
+      // print(questionList![0].question);
+      // print(questionList[0].answers);
+      // print(questionList);
       if (!mounted) {
         return;
       } else {
         Provider.of<QuizDataList>(context, listen: false)
-            .addFlashCard(_textController.text, FlashCard(questionList));
-        final someRan = Provider.of<QuizDataList>(context, listen: false)
-            .quizList[_textController.text]
-            ?.oneFlashCard[0]
-            .question;
-        final someRan2 = Provider.of<QuizDataList>(context, listen: false)
-            .quizList[_textController.text]
-            ?.oneFlashCard[0]
-            .answers;
-        print(someRan);
-        print(someRan2);
+            .addFlashCard(_textController.text, FlashCard(questionList!));
+        // final someRan = Provider.of<QuizDataList>(context, listen: false)
+        //     .quizList[_textController.text]
+        //     ?.oneFlashCard[0]
+        //     .question;
+        // final someRan2 = Provider.of<QuizDataList>(context, listen: false)
+        //     .quizList[_textController.text]
+        //     ?.oneFlashCard[0]
+        //     .answers;
+        // print(someRan);
+        // print(someRan2);
         _textController.clear();
       }
     }
@@ -114,7 +114,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                         hintText: 'Enter Flashcard Name',
                       ),
                       keyboardType: TextInputType.name,
-                      maxLength: 100,
+                      maxLength: 10,
                     ),
                   ),
                   spacingBox,
@@ -122,7 +122,10 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
-                        onPressed: () => context.go(MyRoutes.mainQuizScreen),
+                        onPressed: () => {
+                          FocusScope.of(context).unfocus(),
+                          context.go(MyRoutes.mainQuizScreen),
+                        },
                         child: const Text('Return to Main'),
                       ),
                       ElevatedButton(

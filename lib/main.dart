@@ -6,7 +6,7 @@ import 'package:quiz_app/views/main_route.dart';
 void main() {
   runApp(
     ChangeNotifierProvider<QuizDataList>(
-      create: (_) => QuizDataList(),
+      create: (context) => QuizDataList(),
       child: const MainRoute(),
     ),
   );

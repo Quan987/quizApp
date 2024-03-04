@@ -58,8 +58,14 @@ class QuizDataList with ChangeNotifier {
     ),
   };
 
+  List<String> get quizTitle => quizList.keys.toList();
+
   void addFlashCard(String cardName, FlashCard flashCard) {
     quizList[cardName] = flashCard;
     notifyListeners();
+  }
+
+  List<CardQuestion> getFlashcard(String title) {
+    return quizList[title]!.oneFlashCard;
   }
 }
