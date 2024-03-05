@@ -35,7 +35,7 @@ class _AddQuizQuestionState extends State<AddQuizQuestion> {
       _cardQuestions.add(
         CardQuestion(
           _questionAnswer[0],
-          List.of(_questionAnswer.getRange(1, _questionAnswer.length - 1)),
+          List.of(_questionAnswer.getRange(1, _questionAnswer.length)),
         ),
       );
       FocusScope.of(context).unfocus();

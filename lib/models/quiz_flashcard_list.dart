@@ -24,9 +24,9 @@ class QuizDataList with ChangeNotifier {
         CardQuestion(
           'What color is the inside of a kiwifruit?',
           [
-            'Red',
-            'Yellow',
             'Green',
+            'Yellow',
+            'Red',
             'Orange',
           ],
         ),
@@ -75,8 +75,8 @@ class QuizDataList with ChangeNotifier {
         CardQuestion(
           'Which of the following is a programming language designed for web development?',
           [
-            'Python',
             'JavaScript',
+            'Python',
             'C#',
             'Swift',
           ],
@@ -93,8 +93,8 @@ class QuizDataList with ChangeNotifier {
         CardQuestion(
           'Which data structure uses a FIFO (First In, First Out) method?',
           [
-            'Stack',
             'Queue',
+            'Stack',
             'Array',
             'Linked List',
           ],
@@ -102,8 +102,8 @@ class QuizDataList with ChangeNotifier {
         CardQuestion(
           'What is the name of the process to convert source code into machine code?',
           [
-            'Interpreting',
             'Compiling',
+            'Interpreting',
             'Executing',
             'Debugging',
           ],
@@ -119,13 +119,7 @@ class QuizDataList with ChangeNotifier {
     notifyListeners();
   }
 
-  List<CardQuestion> getFlashcard(String title) {
-    return quizList[title]!.oneFlashCard;
-  }
-
-  List<String> getAnswerShuffle(String title, int index) {
-    final shuffleAnswer = List.of(quizList[title]!.oneFlashCard[index].answers);
-    shuffleAnswer.shuffle();
-    return shuffleAnswer;
-  }
+  // List<CardQuestion> getFlashcard(String title) {
+  //   return quizList[title]!.oneFlashCard;
+  // }
 }

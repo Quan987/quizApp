@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quiz_app/models/card_question.dart';
+import 'package:provider/provider.dart';
+
+import 'package:quiz_app/models/flashcard.dart';
 import 'package:quiz_app/models/quiz_flashcard_list.dart';
 import 'package:quiz_app/widgets/custom_display_score.dart';
 import 'package:quiz_app/widgets/custom_loading.dart';
@@ -16,7 +18,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
   late bool _isLoading;
   late String _quizTitle;
   late List<String> _userAnswers;
-  late List<CardQuestion> _quizData;
+  FlashCard? _quizData;
 
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
     final routeState = GoRouterState.of(context).extra! as List<Object>;
     _quizTitle = routeState[0] as String;
     _userAnswers = routeState[1] as List<String>;
-    _quizData = QuizDataList().getFlashcard(_quizTitle);
+    _quizData = context.watch<QuizDataList>().quizList[_quizTitle];
 
     return _isLoading
         ? const LoadingScreen()
@@ -51,10 +53,12 @@ class _ScoreScreenState extends State<ScoreScreen> {
                     ),
                   ),
                 ),
+
+// Displaying Answer Widget
                 DisplayScore(
                   quizTitle: _quizTitle,
                   userAnswers: _userAnswers,
-                  quizData: _quizData,
+                  quizData: _quizData!,
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(12, 12, 12, 24),

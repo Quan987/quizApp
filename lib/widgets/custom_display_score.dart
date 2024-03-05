@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/models/card_question.dart';
+import 'package:quiz_app/models/flashcard.dart';
 import 'package:quiz_app/widgets/custom_display_text.dart';
 
 class DisplayScore extends StatelessWidget {
@@ -12,7 +12,7 @@ class DisplayScore extends StatelessWidget {
 
   final String quizTitle;
   final List<String> userAnswers;
-  final List<CardQuestion> quizData;
+  final FlashCard quizData;
 
   List<Map<String, Object>> get quizSummary {
     final List<Map<String, Object>> summaryData = [];
@@ -21,8 +21,8 @@ class DisplayScore extends StatelessWidget {
       summaryData.add(
         {
           'index': i,
-          'question': quizData[i].question,
-          'correct_answer': quizData[i].answers[0],
+          'question': quizData.oneFlashCard[i].question,
+          'correct_answer': quizData.oneFlashCard[i].answers[0],
           'user_answer': userAnswers[i],
         },
       );
@@ -33,7 +33,7 @@ class DisplayScore extends StatelessWidget {
   String get userScore {
     int score = 0;
     for (int i = 0; i < userAnswers.length; i++) {
-      if (userAnswers[i] == quizData[i].answers[0]) {
+      if (userAnswers[i] == quizData.oneFlashCard[i].answers[0]) {
         score++;
       }
     }

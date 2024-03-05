@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:quiz_app/data/routes_data.dart';
-import 'package:quiz_app/models/card_question.dart';
+
+import 'package:quiz_app/models/flashcard.dart';
 import 'package:quiz_app/models/quiz_flashcard_list.dart';
 import 'package:quiz_app/widgets/custom_answer_button.dart';
 
@@ -20,6 +22,7 @@ class _QuizScreenState extends State<QuizScreen> {
   final SizedBox _spacingBox = const SizedBox(height: 30);
   int _currentIndex = 0;
   List<String> userAnswer = [];
+  FlashCard? _quizData;
 
   @override
   void initState() {
@@ -34,7 +37,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   void _onSelect(String answer) {
     userAnswer.add(answer);
-    if (userAnswer.length == QuizDataList().getFlashcard(_cardTitle).length) {
+    if (userAnswer.length == _quizData!.oneFlashCard.length) {
       context.go('${MyRoutes.accessFlashCard}/${MyRoutes.scoreScreen}',
           extra: [_cardTitle, userAnswer]);
       userAnswer = [];
@@ -47,10 +50,16 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   }
 
+  List<String> shuffled(FlashCard quizData, int index) {
+    final shuffledList = List.of(quizData.oneFlashCard[index].answers);
+    shuffledList.shuffle();
+    return shuffledList;
+  }
+
   @override
   Widget build(BuildContext context) {
     _cardTitle = GoRouterState.of(context).extra! as String;
-    List<CardQuestion> quizData = QuizDataList().getFlashcard(_cardTitle);
+    _quizData = context.watch<QuizDataList>().quizList[_cardTitle];
 
     return _isLoading
         ? const LoadingScreen()
@@ -82,7 +91,7 @@ class _QuizScreenState extends State<QuizScreen> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Text(
-                    quizData[_currentIndex].question,
+                    _quizData!.oneFlashCard[_currentIndex].question,
                     style: const TextStyle(
                       fontSize: 20,
                     ),
@@ -91,9 +100,7 @@ class _QuizScreenState extends State<QuizScreen> {
               ),
               _spacingBox,
 // Answer button
-              ...QuizDataList()
-                  .getAnswerShuffle(_cardTitle, _currentIndex)
-                  .map((item) {
+              ...shuffled(_quizData!, _currentIndex).map((item) {
                 return AnswerButton(
                   onClick: () => _onSelect(item),
                   answer: item,
