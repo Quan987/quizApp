@@ -16,7 +16,6 @@ class RouterModel {
   RouterModel();
 
   static final GoRouter quizRoute = GoRouter(
-    debugLogDiagnostics: true,
     initialLocation: MyRoutes.welcomeScreen,
     navigatorKey: _rootNavigatorKey,
     routes: [
