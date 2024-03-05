@@ -10,48 +10,102 @@ class QuizDataList with ChangeNotifier {
 
   final Map<String, FlashCard> quizList = {
     // Flashcard 1
-    'Flutter': const FlashCard(
+    'Fruit': const FlashCard(
       [
         CardQuestion(
-          'What are the main building blocks of Flutter UIs?',
+          'Which fruit is known as the "king of fruits" and is famous for its strong odor?',
           [
-            'Widgets',
-            'Components',
-            'Blocks',
-            'Functions',
+            'Durian',
+            'Mango',
+            'Apple',
+            'Banana',
           ],
         ),
         CardQuestion(
-          'Which widget should you try to use more often: StatelessWidget or StatefulWidget?',
+          'What color is the inside of a kiwifruit?',
           [
-            'StatelessWidget',
-            'StatefulWidget',
-            'Both are equally good',
-            'None of the above',
+            'Red',
+            'Yellow',
+            'Green',
+            'Orange',
+          ],
+        ),
+        CardQuestion(
+          'Which fruit is the primary source of Vitamin C?',
+          [
+            'Orange',
+            'Banana',
+            'Watermelon',
+            'Grapes',
+          ],
+        ),
+        CardQuestion(
+          'What fruit is known for having its seeds on the outside?',
+          [
+            'Strawberry',
+            'Peach',
+            'Apple',
+            'Pear',
+          ],
+        ),
+        CardQuestion(
+          'Which fruit is a hybrid of a pomelo and an orange?',
+          [
+            'Grapefruit',
+            'Lemon',
+            'Lime',
+            'Tangerine',
           ],
         ),
       ],
     ),
 
     // Flashcard 2
-    'Fruits': const FlashCard(
+    'Computer': const FlashCard(
       [
         CardQuestion(
-          'What is the color of banana?',
+          'What does CPU stand for in the context of computing?',
           [
-            'Yellow',
-            'Red',
-            'Blue',
-            'Black',
+            'Central Processing Unit',
+            'Computer Personal Unit',
+            'Central Performance Unit',
+            'Control Processing Unit',
           ],
         ),
         CardQuestion(
-          'What is the color of apple?',
+          'Which of the following is a programming language designed for web development?',
           [
-            'Red',
-            'Green',
-            'Yellow',
-            'White',
+            'Python',
+            'JavaScript',
+            'C#',
+            'Swift',
+          ],
+        ),
+        CardQuestion(
+          'What is the term for an error in a software program?',
+          [
+            'Bug',
+            'Spider',
+            'Virus',
+            'Worm',
+          ],
+        ),
+        CardQuestion(
+          'Which data structure uses a FIFO (First In, First Out) method?',
+          [
+            'Stack',
+            'Queue',
+            'Array',
+            'Linked List',
+          ],
+        ),
+        CardQuestion(
+          'What is the name of the process to convert source code into machine code?',
+          [
+            'Interpreting',
+            'Compiling',
+            'Executing',
+            'Debugging',
           ],
         ),
       ],
@@ -67,5 +121,11 @@ class QuizDataList with ChangeNotifier {
 
   List<CardQuestion> getFlashcard(String title) {
     return quizList[title]!.oneFlashCard;
+  }
+
+  List<String> getAnswerShuffle(String title, int index) {
+    final shuffleAnswer = List.of(quizList[title]!.oneFlashCard[index].answers);
+    shuffleAnswer.shuffle();
+    return shuffleAnswer;
   }
 }

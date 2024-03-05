@@ -38,8 +38,6 @@ class _AddQuizQuestionState extends State<AddQuizQuestion> {
           List.of(_questionAnswer.getRange(1, _questionAnswer.length - 1)),
         ),
       );
-      // print(cardQuestions[0].question);
-      // print(cardQuestions[0].answers);
       FocusScope.of(context).unfocus();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

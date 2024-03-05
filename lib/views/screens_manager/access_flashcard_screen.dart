@@ -15,7 +15,7 @@ class AccessFlashCard extends StatefulWidget {
 
 class _AccessFlashCardState extends State<AccessFlashCard> {
   late bool _isLoading;
-  String? selectedValue;
+  String? _selectedValue;
 
   @override
   void initState() {
@@ -30,13 +30,12 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
 
   void _selectItem(String? value) {
     setState(() {
-      selectedValue = value!;
+      _selectedValue = value!;
     });
-    print(selectedValue == null);
   }
 
   void _beginQuiz() {
-    if (selectedValue == null) {
+    if (_selectedValue == null) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -57,10 +56,11 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
       );
       return;
     } else {
-      context.push(
+      context.go(
         '${MyRoutes.accessFlashCard}/${MyRoutes.startQuiz}',
-        extra: selectedValue,
+        extra: _selectedValue,
       );
+      _selectedValue = null;
     }
   }
 
@@ -84,6 +84,12 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
                 padding: const EdgeInsets.all(40),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton2<String>(
+                    buttonStyleData: ButtonStyleData(
+                      elevation: 2,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          color: Colors.white),
+                    ),
                     isExpanded: true,
                     hint: Text(
                       'Select Item',
@@ -99,7 +105,7 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
                                   style: const TextStyle(fontSize: 14)),
                             ))
                         .toList(),
-                    value: selectedValue,
+                    value: _selectedValue,
                     onChanged: _selectItem,
                   ),
                 ),
@@ -109,10 +115,12 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(elevation: 3),
                     onPressed: () => context.go(MyRoutes.mainQuizScreen),
                     child: const Text('Return to Main'),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(elevation: 3),
                     onPressed: () async {
                       _beginQuiz();
                     },
@@ -124,11 +132,3 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
           );
   }
 }
-
-    // Method of Chosing FlashCard
-            
-              // Consumer<QuizDataList>(
-              //   builder: (context, quizData, child) {
-              //     return Text('${quizData.quizTitle}');
-              //   },
-              // ),

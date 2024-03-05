@@ -62,26 +62,11 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
           await context.push<List<CardQuestion>>(
         '${MyRoutes.createFlashCard}/${MyRoutes.addQuizQuestion}',
       );
-
-      // print(_textController.text);
-      // print(questionList![0].question);
-      // print(questionList[0].answers);
-      // print(questionList);
       if (!mounted) {
         return;
       } else {
         Provider.of<QuizDataList>(context, listen: false)
             .addFlashCard(_textController.text, FlashCard(questionList!));
-        // final someRan = Provider.of<QuizDataList>(context, listen: false)
-        //     .quizList[_textController.text]
-        //     ?.oneFlashCard[0]
-        //     .question;
-        // final someRan2 = Provider.of<QuizDataList>(context, listen: false)
-        //     .quizList[_textController.text]
-        //     ?.oneFlashCard[0]
-        //     .answers;
-        // print(someRan);
-        // print(someRan2);
         _textController.clear();
       }
     }
@@ -122,6 +107,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(elevation: 3),
                         onPressed: () => {
                           FocusScope.of(context).unfocus(),
                           context.go(MyRoutes.mainQuizScreen),
@@ -129,7 +115,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                         child: const Text('Return to Main'),
                       ),
                       ElevatedButton(
-                        //
+                        style: ElevatedButton.styleFrom(elevation: 3),
                         onPressed: _createFlashCard,
                         child: const Text('Create New'),
                       ),

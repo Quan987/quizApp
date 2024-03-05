@@ -1,9 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:quiz_app/data/routes_data.dart';
+import 'package:quiz_app/models/card_question.dart';
 import 'package:quiz_app/models/quiz_flashcard_list.dart';
+import 'package:quiz_app/widgets/custom_answer_button.dart';
 
 import 'package:quiz_app/widgets/custom_loading.dart';
 
@@ -17,6 +17,9 @@ class QuizScreen extends StatefulWidget {
 class _QuizScreenState extends State<QuizScreen> {
   late bool _isLoading;
   late String _cardTitle;
+  final SizedBox _spacingBox = const SizedBox(height: 30);
+  int _currentIndex = 0;
+  List<String> userAnswer = [];
 
   @override
   void initState() {
@@ -29,9 +32,25 @@ class _QuizScreenState extends State<QuizScreen> {
     super.initState();
   }
 
+  void _onSelect(String answer) {
+    userAnswer.add(answer);
+    if (userAnswer.length == QuizDataList().getFlashcard(_cardTitle).length) {
+      context.go('${MyRoutes.accessFlashCard}/${MyRoutes.scoreScreen}',
+          extra: [_cardTitle, userAnswer]);
+      userAnswer = [];
+      _currentIndex = 0;
+      _cardTitle = '';
+    } else {
+      setState(() {
+        _currentIndex++;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _cardTitle = GoRouterState.of(context).extra! as String;
+    List<CardQuestion> quizData = QuizDataList().getFlashcard(_cardTitle);
 
     return _isLoading
         ? const LoadingScreen()
@@ -43,6 +62,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   fontSize: 20,
                 ),
               ),
+              _spacingBox,
               Container(
                 constraints: const BoxConstraints(
                   minHeight: 120,
@@ -62,31 +82,25 @@ class _QuizScreenState extends State<QuizScreen> {
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Text(
-                    QuizDataList().getFlashcard(_cardTitle)[0].question,
+                    quizData[_currentIndex].question,
                     style: const TextStyle(
                       fontSize: 20,
                     ),
                   ),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child:
-                    Text(QuizDataList().getFlashcard(_cardTitle)[0].answers[1]),
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: () => {
-                  print(QuizDataList().getFlashcard(_cardTitle)),
-                  print(QuizDataList().getFlashcard(_cardTitle)[0].question),
-                  print(QuizDataList().getFlashcard(_cardTitle)[0].answers),
-                },
-                child: const Text('Return'),
-              ),
+              _spacingBox,
+// Answer button
+              ...QuizDataList()
+                  .getAnswerShuffle(_cardTitle, _currentIndex)
+                  .map((item) {
+                return AnswerButton(
+                  onClick: () => _onSelect(item),
+                  answer: item,
+                  space: _spacingBox,
+                );
+              }),
             ],
           );
   }
 }
-
-
-// context.go('${MyRoutes.accessFlashCard}/${MyRoutes.scoreScreen}')
