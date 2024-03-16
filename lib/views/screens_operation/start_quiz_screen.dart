@@ -83,8 +83,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   borderRadius: const BorderRadius.all(
                     Radius.elliptical(10, 10),
                   ),
-                  border:
-                      Border.all(color: const Color.fromARGB(255, 93, 91, 91)),
+                  border: Border.all(color: Color.fromARGB(255, 10, 2, 255)),
                 ),
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(12.0),

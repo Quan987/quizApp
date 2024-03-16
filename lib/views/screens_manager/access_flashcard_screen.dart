@@ -7,7 +7,7 @@ import 'package:quiz_app/widgets/custom_loading.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
 class AccessFlashCard extends StatefulWidget {
-  const AccessFlashCard({super.key});
+  const AccessFlashCard({Key? key}) : super(key: key);
 
   @override
   State<AccessFlashCard> createState() => _AccessFlashCardState();
@@ -34,7 +34,7 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
     });
   }
 
-  void _beginQuiz() {
+  void _beginQuiz(BuildContext context) {
     if (_selectedValue == null) {
       showDialog(
         context: context,
@@ -70,65 +70,99 @@ class _AccessFlashCardState extends State<AccessFlashCard> {
 
     return _isLoading
         ? const LoadingScreen()
-        : Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text(
-                'Access Flashcard',
-                style: TextStyle(
-                  fontSize: 30,
+        : Scaffold(
+            body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/images/quizbackground.jpg'), // Adjust path accordingly
+                  fit: BoxFit.cover,
                 ),
               ),
-
-              Padding(
-                padding: const EdgeInsets.all(40),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton2<String>(
-                    buttonStyleData: ButtonStyleData(
-                      elevation: 2,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          color: Colors.white),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Access Flashcard',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
                     ),
-                    isExpanded: true,
-                    hint: Text(
-                      'Select Item',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Theme.of(context).hintColor,
+                  ),
+                  const SizedBox(height: 40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        buttonStyleData: ButtonStyleData(
+                          elevation: 2,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            color: Colors.white,
+                          ),
+                        ),
+                        isExpanded: true,
+                        hint: Text(
+                          'Select Item',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).hintColor,
+                          ),
+                        ),
+                        items: quizData.quizTitle
+                            .map((String title) => DropdownMenuItem<String>(
+                                  value: title,
+                                  child: Text(
+                                    title,
+                                    style: const TextStyle(fontSize: 16),
+                                  ),
+                                ))
+                            .toList(),
+                        value: _selectedValue,
+                        onChanged: _selectItem,
                       ),
                     ),
-                    items: quizData.quizTitle
-                        .map((String title) => DropdownMenuItem<String>(
-                              value: title,
-                              child: Text(title,
-                                  style: const TextStyle(fontSize: 14)),
-                            ))
-                        .toList(),
-                    value: _selectedValue,
-                    onChanged: _selectItem,
                   ),
-                ),
-              ),
-// Button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 3),
-                    onPressed: () => context.go(MyRoutes.mainQuizScreen),
-                    child: const Text('Return to Main'),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(elevation: 3),
-                    onPressed: () async {
-                      _beginQuiz();
-                    },
-                    child: const Text('Access Quiz'),
+                  const SizedBox(height: 40),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 3,
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        onPressed: () => context.go(MyRoutes.mainQuizScreen),
+                        child: const Text(
+                          'Return to Main',
+                          style: TextStyle(color: Colors.black), // Black Text
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 3,
+                          backgroundColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        onPressed: () async {
+                          _beginQuiz(context);
+                        },
+                        child: const Text(
+                          'Access Quiz',
+                          style: TextStyle(color: Colors.black), // Black Text
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           );
   }
 }

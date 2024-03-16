@@ -57,7 +57,7 @@ class DisplayScore extends StatelessWidget {
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
+                border: Border.all(color: Color.fromARGB(255, 0, 42, 255)),
               ),
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +68,8 @@ class DisplayScore extends StatelessWidget {
                     child: Container(
                       width: 30,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
+                        border:
+                            Border.all(color: Color.fromARGB(255, 0, 17, 255)),
                         shape: BoxShape.circle,
                       ),
                       child: Text(

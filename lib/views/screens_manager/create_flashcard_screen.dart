@@ -8,7 +8,7 @@ import 'package:quiz_app/models/quiz_flashcard_list.dart';
 import 'package:quiz_app/widgets/custom_loading.dart';
 
 class CreateFlashCard extends StatefulWidget {
-  const CreateFlashCard({super.key});
+  const CreateFlashCard({Key? key}) : super(key: key);
 
   @override
   State<CreateFlashCard> createState() => _CreateFlashCardState();
@@ -78,50 +78,93 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
         ? const LoadingScreen()
         : GestureDetector(
             onTap: () => FocusScope.of(context).unfocus(),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  spacingBox,
-                  const Text(
-                    'Create Flashcard',
-                    style: TextStyle(
-                      fontSize: 30,
+            child: Scaffold(
+              body: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Stack(
+                  children: [
+                    // Background Image
+                    Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/quizbackground.jpg'),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                  spacingBox,
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: TextField(
-                      controller: _textController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Enter Flashcard Name',
-                      ),
-                      keyboardType: TextInputType.name,
-                      maxLength: 10,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        spacingBox,
+                        const Text(
+                          'Create Flashcard',
+                          style: TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue,
+                          ),
+                        ),
+                        spacingBox,
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: TextFormField(
+                            controller: _textController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Enter Flashcard Name',
+                              fillColor: Colors.grey[200],
+                              filled: true,
+                            ),
+                            keyboardType: TextInputType.name,
+                            maxLength: 10,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        spacingBox,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 3,
+                                backgroundColor: Colors.red,
+                              ),
+                              onPressed: () => {
+                                FocusScope.of(context).unfocus(),
+                                context.go(MyRoutes.mainQuizScreen),
+                              },
+                              child: const Text(
+                                'Return to Main',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color:
+                                      Colors.black, // Set text color to black
+                                ),
+                              ),
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 3,
+                                backgroundColor: Colors.green,
+                              ),
+                              onPressed: _createFlashCard,
+                              child: const Text(
+                                'Create New',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color:
+                                      Colors.black, // Set text color to black
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
-                  spacingBox,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(elevation: 3),
-                        onPressed: () => {
-                          FocusScope.of(context).unfocus(),
-                          context.go(MyRoutes.mainQuizScreen),
-                        },
-                        child: const Text('Return to Main'),
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(elevation: 3),
-                        onPressed: _createFlashCard,
-                        child: const Text('Create New'),
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
