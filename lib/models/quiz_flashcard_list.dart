@@ -119,7 +119,34 @@ class QuizDataList with ChangeNotifier {
     notifyListeners();
   }
 
-  // List<CardQuestion> getFlashcard(String title) {
-  //   return quizList[title]!.oneFlashCard;
-  // }
+  // Function to create a styled card widget
+  Widget buildCard(String title, BuildContext context) {
+    return Card(
+      elevation: 4,
+      margin: EdgeInsets.all(8),
+      child: ListTile(
+        title: Text(
+          title,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        trailing: ElevatedButton(
+          onPressed: () {
+            // Implement button functionality
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue, // Change the button color here
+          ),
+          child: Text(
+            'Start Quiz',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -6,7 +6,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey.withOpacity(0.2),
+      color: Color.fromARGB(255, 10, 153, 200).withOpacity(0.2),
       child: const Center(
         child: CircularProgressIndicator(),
       ),

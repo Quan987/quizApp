@@ -1,16 +1,23 @@
 # quiz_app
 
-A new Flutter project.
+A fully functional quiz app that allow user to create flashcard and access them in a quiz like order
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Please follow the instruction below to get the app running:
 
-A few resources to get you started if this is your first Flutter project:
+- Before running the app, please enter the following in sequence:
+    1) flutter pub add go_router
+    2) flutter pub add provider
+    3) flutter pub add dropdown_button2
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- To run the app without access source code, drag the apk file into the emulator 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- To run the app using source code, please use main.dart file to start running the app
+    1) Please create a new flutter project and replace the lib folder in the project with the unzip lib folder
+    2) Add the assets from the zip file to the project folder
+    3) Under pubspec.yaml:
+        - Add "- assets/images/logo.png" and "- assets/images/quizbackground.jpg"
+
+- Do not modify or changes any other code, otherwise app may not function as expected
+

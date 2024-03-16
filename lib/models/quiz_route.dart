@@ -27,52 +27,62 @@ class RouterModel {
               title: const Text(
                 'Quiz App',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 0, 0, 0),
                 ),
               ),
               centerTitle: true,
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.transparent,
+              elevation: 0, // Remove shadow
             ),
-            body: child,
+            body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      "assets/images/quizbackground.jpg"), // Updated image path
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: child,
+            ),
           );
         },
         routes: [
           GoRoute(
             name: 'Welcome Screen',
             path: MyRoutes.welcomeScreen,
-            builder: (context, state) => const WelcomeScreen(),
+            builder: (context, state) => WelcomeScreen(),
           ),
           GoRoute(
             name: 'Main Screen',
             path: MyRoutes.mainQuizScreen,
-            builder: (context, state) => const MainQuizScreen(),
+            builder: (context, state) => MainQuizScreen(),
           ),
           GoRoute(
             name: 'Create Flash Card',
             path: MyRoutes.createFlashCard,
-            builder: (context, state) => const CreateFlashCard(),
+            builder: (context, state) => CreateFlashCard(),
             routes: [
               GoRoute(
                 name: 'Add Question',
                 path: MyRoutes.addQuizQuestion,
-                builder: (context, state) => const AddQuizQuestion(),
+                builder: (context, state) => AddQuizQuestion(),
               ),
             ],
           ),
           GoRoute(
             name: 'Access Flash Card',
             path: MyRoutes.accessFlashCard,
-            builder: (context, state) => const AccessFlashCard(),
+            builder: (context, state) => AccessFlashCard(),
             routes: [
               GoRoute(
                 name: 'Quiz Screen',
                 path: MyRoutes.startQuiz,
-                builder: (context, state) => const QuizScreen(),
+                builder: (context, state) => QuizScreen(),
               ),
               GoRoute(
                 name: 'Score Screen',
                 path: MyRoutes.scoreScreen,
-                builder: (context, state) => const ScoreScreen(),
+                builder: (context, state) => ScoreScreen(),
               ),
             ],
           ),
